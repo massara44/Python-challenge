@@ -25,8 +25,8 @@ dates = []
 profits = []
 
 #Opening file
-with open(pybank_path) as csvfile:
-    csv_reader = csv.reader(csvfile)
+with open(pybank_path) as file:
+    csv_reader = csv.reader(file)
 
     #first line has header value
     header = next(csv_reader)
@@ -37,7 +37,7 @@ with open(pybank_path) as csvfile:
 
     total_month += 1
     total_amount += int(firstrow[1])
-
+    
     value = int(firstrow[1])
  
 
@@ -53,12 +53,10 @@ with open(pybank_path) as csvfile:
         profits.append(change)
         value = int(row[1])
     
-
     #Greatest increase in profits
     gr_profits = max(profits)
     gr_index = profits.index(gr_profits)
     gr_date = dates[gr_index]
-
 
     #Greatest decrease in profits 
     gr_losses = min(profits)
@@ -71,10 +69,11 @@ with open(pybank_path) as csvfile:
 
     #displaying information
 print("Financial Analysis")
-print("---------------------")
+print("----------------------------")
 print(f"Total Months: {str(total_month)}")
 print(f"Total: ${str(total_amount)}")
-print(f"Average Change: ${str(round(avg_change,2))}")
+print(f"Average Monthly Change: ${str(round(avg_change,2))}")
 print(f"Greatest Increase in Profits: {gr_date} (${str(gr_profits)})")
-print(f"Greatest Decrease in Profits: {gl_date} (${str(gr_losses)})")
+print(f"Greatest Loss in Profits: {gl_date} (${str(gr_losses)})")
+
 
